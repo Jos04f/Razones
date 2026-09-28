@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Ale ❤️</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        color: #4a2030;
+    }
+
+    .card {
+        width: 90%;
+        max-width: 420px;
+        background: rgba(255, 255, 255, 0.94);
+        border-radius: 30px;
+        padding: 35px 25px;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0,0,0,.2);
+        position: relative;
+        z-index: 2;
+    }
+
+    .heart {
+        font-size: 55px;
+        animation: latido 1.3s infinite;
+    }
+
+    @keyframes latido {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+    }
+
+    h1 {
+        margin: 10px 0 5px;
+        color: #e83e6f;
+        font-size: 32px;
+    }
+
+    .subtitle {
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    .reason-box {
+        background: #fff0f5;
+        border-radius: 20px;
+        padding: 25px 18px;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: opacity .3s, transform .3s;
+    }
+
+    .number {
+        font-size: 14px;
+        color: #e83e6f;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .reason {
+        font-size: 20px;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
+    button {
+        margin-top: 25px;
+        border: none;
+        background: #e83e6f;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(232,62,111,.3);
+        transition: transform .2s, background .2s;
+    }
+
+    button:active {
+        transform: scale(.94);
+    }
+
+    .footer {
+        margin-top: 22px;
+        font-size: 13px;
+        color: #999;
+    }
+
+    .floating-heart {
+        position: fixed;
+        bottom: -30px;
+        font-size: 20px;
+        animation: subir 7s linear forwards;
+        opacity: .7;
+        z-index: 1;
+    }
+
+    @keyframes subir {
+        0% {
+            transform: translateY(0) rotate(0);
+            opacity: 0;
+        }
+        20% {
+            opacity: .8;
+        }
+        100% {
+            transform: translateY(-110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="heart">❤️</div>
+
+    <h1>Para Ale</h1>
+
+    <div class="subtitle">
+        100 razones por las que te amo
+    </div>
+
+    <div class="reason-box" id="reasonBox">
+        <div class="number" id="number"></div>
+        <div class="reason" id="reason"></div>
+    </div>
+
+    <button onclick="nuevaRazon()">
+        💕 Descubrir otra razón
+    </button>
+
+    <div class="footer">
+        Hecho especialmente para ti ❤️
+    </div>
+
+</div>
+
+<script>
+
+const razones = [
+
+"Porque haces que mis días sean mucho más bonitos.",
+"Porque contigo puedo ser completamente yo.",
+"Porque tu sonrisa puede cambiar mi día.",
+"Porque me encanta la forma en que me miras.",
+"Porque contigo hasta los momentos más simples se sienten especiales.",
+"Porque me haces reír cuando más lo necesito.",
+"Porque siempre encuentro algo nuevo que amar de ti.",
+"Porque tienes una forma muy especial de hacerme sentir querido.",
+"Porque me encanta escuchar tu voz.",
+"Porque tus abrazos se sienten como mi lugar favorito.",
+"Porque contigo puedo hablar de cualquier cosa.",
+"Porque me haces querer ser una mejor persona.",
+"Porque me encanta pasar tiempo contigo.",
+"Porque incluso cuando no hacemos nada, disfruto estar contigo.",
+"Porque tienes un corazón increíble.",
+"Porque haces que un día normal se convierta en un recuerdo.",
+"Porque me encanta tu manera de pensar.",
+"Porque admiro muchas cosas de ti.",
+"Porque siempre consigues sacarme una sonrisa.",
+"Porque me haces sentir afortunado.",
+"Porque contigo puedo compartir mis tonterías.",
+"Porque me encanta cuando te emocionas contando algo.",
+"Porque tus pequeños detalles significan muchísimo para mí.",
+"Porque eres una persona que quiero tener en mi vida.",
+"Porque me encanta aprender cosas nuevas contigo.",
+"Porque contigo siento paz.",
+"Porque me encanta cuando nos reímos de cosas que solamente nosotros entendemos.",
+"Porque haces que te extrañe incluso cuando acabamos de despedirnos.",
+"Porque eres parte de muchos de mis recuerdos favoritos.",
+"Porque me encanta verte feliz.",
+"Porque tu felicidad también me hace feliz.",
+"Porque contigo puedo soñar a lo grande.",
+"Porque me encanta cómo eres.",
+"Porque no necesito fingir nada cuando estoy contigo.",
+"Porque haces que mi corazón se sienta en casa.",
+"Porque cada momento contigo tiene algo especial.",
+"Porque me encanta sorprenderte.",
+"Porque me gusta verte sonreír por algo que hice.",
+"Porque eres una de mis personas favoritas en todo el mundo.",
+"Porque contigo puedo hablar durante horas.",
+"Porque me encanta escuchar tus historias.",
+"Porque haces que quiera guardar cada recuerdo contigo.",
+"Porque tienes una manera única de hacerme sentir especial.",
+"Porque me encanta cuando estamos juntos y el tiempo pasa volando.",
+"Porque contigo he vivido momentos que nunca quiero olvidar.",
+"Porque me haces sentir acompañado.",
+"Porque me encanta tu forma de demostrar cariño.",
+"Porque tienes detalles que quizás tú consideras pequeños, pero para mí significan muchísimo.",
+"Porque me encanta tu personalidad.",
+"Porque siempre hay algo de ti que consigue sorprenderme.",
+"Porque haces que mi mundo sea un poquito más bonito.",
+"Porque me gusta imaginar todos los recuerdos que todavía nos faltan.",
+"Porque eres alguien con quien quiero compartir muchas aventuras.",
+"Porque me encanta cuando hacemos planes juntos.",
+"Porque incluso tus pequeñas manías me parecen adorables.",
+"Porque me encanta cuando me buscas para contarme algo.",
+"Porque haces que quiera aprovechar cada momento contigo.",
+"Porque me encanta cómo nos entendemos.",
+"Porque contigo puedo reírme hasta que me duela la panza.",
+"Porque me haces sentir importante.",
+"Porque me encanta cuidarte.",
+"Porque me gusta saber que puedo estar para ti.",
+"Porque eres especial para mí de una manera difícil de explicar.",
+"Porque me encanta tu forma de querer.",
+"Porque contigo he aprendido que los pequeños momentos pueden ser los mejores.",
+"Porque me encanta tener recuerdos que solamente tú y yo compartimos.",
+"Porque me haces sonreír incluso cuando no estás cerca.",
+"Porque me encanta pensar en ti durante el día.",
+"Porque eres una de las primeras personas a las que quiero contarle algo cuando pasa.",
+"Porque me encanta compartir mis planes contigo.",
+"Porque me gusta imaginar nuestro futuro.",
+"Porque me haces sentir que no estoy solo.",
+"Porque me encanta tu manera de abrazarme.",
+"Porque siempre quiero cinco minutos más contigo.",
+"Porque contigo puedo ser cursi sin sentir vergüenza.",
+"Porque me encanta cuando me haces reír sin intentarlo.",
+"Porque me gusta descubrir nuevas cosas de ti.",
+"Porque me encanta celebrar tus logros.",
+"Porque quiero estar contigo en los momentos buenos y en los difíciles.",
+"Porque me importa cómo te sientes.",
+"Porque me encanta hacerte feliz.",
+"Porque eres una persona que quiero cuidar.",
+"Porque cada foto contigo guarda un recuerdo que quiero conservar.",
+"Porque me encanta recordar nuestras primeras veces.",
+"Porque me haces sentir mariposas.",
+"Porque todavía consigues ponerme nervioso de una manera bonita.",
+"Porque me encanta cuando nuestros ojos se encuentran.",
+"Porque contigo puedo olvidar el resto del mundo por un rato.",
+"Porque eres parte de mi felicidad.",
+"Porque me encanta nuestra historia.",
+"Porque quiero seguir escribiendo capítulos contigo.",
+"Porque cada día encuentro otra razón para quererte.",
+"Porque no cambiaría nuestros momentos por nada.",
+"Porque eres tú, y eso ya es una razón enorme.",
+"Porque me encanta llamarte mi novia.",
+"Porque me haces sentir muy afortunado de tenerte.",
+"Porque contigo quiero seguir viviendo muchas historias.",
+"Porque te quiero más de lo que estas 100 razones pueden explicar.",
+"Y la número 100... porque simplemente eres Ale, y te amo. ❤️"
+
+];
+
+let ultima = -1;
+
+function nuevaRazon() {
+
+    let numero;
+
+    do {
+        numero = Math.floor(Math.random() * razones.length);
+    } while (numero === ultima && razones.length > 1);
+
+    ultima = numero;
+
+    const box = document.getElementById("reasonBox");
+
+    box.style.opacity = "0";
+    box.style.transform = "scale(.95)";
+
+    setTimeout(() => {
+
+        document.getElementById("number").textContent =
+            "Razón #" + (numero + 1);
+
+        document.getElementById("reason").textContent =
+            razones[numero];
+
+        box.style.opacity = "1";
+        box.style.transform = "scale(1)";
+
+    }, 200);
+
+}
+
+function crearCorazon() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "floating-heart";
+
+    heart.textContent = Math.random() > .5 ? "❤️" : "💕";
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 20) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+nuevaRazon();
+
+setInterval(crearCorazon, 800);
+
+</script>
+
+</body>
+</html>
